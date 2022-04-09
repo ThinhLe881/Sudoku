@@ -1,0 +1,86 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.d-inline-block {
+	margin-right: 2rem;
+}
+
+@media screen and (max-width: 370px) {
+	.control {
+		flex-direction: column;
+		row-gap: 0.5rem;
+	}
+
+	.control-btn {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.control {
+	display: flex;
+	justify-content: space-between;
+	column-gap: 0.5rem;
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+	max-width: 30rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn {
+	padding: 0.5rem;
+	font-weight: bold;
+	border: solid medium;
+}
+
+.timer {
+	background-color: #f76c5e;
+	flex: 1;
+}
+
+.game-board {
+	margin: 0.5rem;
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+	table-layout: fixed;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+colgroup,
+tbody {
+	border: solid medium;
+}
+
+td {
+	border: solid thin;
+	height: 3.5rem;
+	width: 3.5rem;
+	text-align: center;
+	padding: 0;
+}
+
+.numbers-palette td {
+	border: solid medium;
+}
+
+td:hover {
+	background-color: #f5dd90;
+}
+
+.on-click {
+	background-color: #f5dd90;
+}
+
+.user-input {
+	background-color: #f2f2f2;
+}
+
+.error {
+	background-color: #f76c5e;
+}
