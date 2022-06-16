@@ -11,10 +11,11 @@
   <script src="scripts/sudoku.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fw-bold">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="./images/logo.gif" alt="" width="40" height="30" class="d-inline-block align-text-top">
+        <img src="./images/logo.webp" alt="" width="25" height="25" class="d-inline-block align-text-top">
         Sudoku Centre
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,6 +34,7 @@
       </div>
     </div>
   </nav>
+
   <div class="control">
     <div class="control-btn">
       <button class="btn" id="start-btn">New Game</button>
@@ -43,6 +45,7 @@
       <label id="minutes">00</label>:<label id="seconds">00</label>
     </button>
   </div>
+
   <div class="game-board">
     <table class="sudoku-board" id="sudoku-board">
       <colgroup><col><col><col>
@@ -62,17 +65,38 @@
           <tr> <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>  <td>
     </table>
   </div>
- <div class="game-board">
-  <table class="numbers-palette" id="numbers-palette">
-    <tbody>
-      <tr> <td>1  <td>2  <td>3  <td>4  <td>5  <td>6  <td>7  <td>8  <td>9 <td id="undo-btn"> <img src="./images/undo.png">
-    </tbody>
-  </table>
- </div>
- <div id="successModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Congratulations! You won</p>
+
+  <div class="game-board">
+    <table class="numbers-palette" id="numbers-palette">
+      <tbody>
+        <tr> <td>1  <td>2  <td>3  <td>4  <td>5  <td>6  <td>7  <td>8  <td>9 <td id="undo-btn"> <img src="./images/undo.png">
+      </tbody>
+    </table>
   </div>
-</div>
+
+  <div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100 fw-bold">Choose Difficulty Level</h5>
+        </div>
+        <div class="modal-body text-center">
+          <button type="button" class="btn bg-success" data-dismiss="modal">Easy</button>
+          <button type="button" class="btn bg-warning" data-dismiss="modal">Medium</button>
+          <button type="button" class="btn bg-danger" data-dismiss="modal">Hard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content text-white bg-dark">
+        <div class="modal-header text-center">
+          <h5 class="modal-title w-100 fw-bold">Congratulations! You have solved the puzzle!</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>

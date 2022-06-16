@@ -12,8 +12,8 @@ window.onload = function() {
   let solveBtn = document.getElementById("solve-btn");
   let resetBtn = document.getElementById("reset-btn");
   let undoBtn = document.getElementById("undo-btn");
-  let successModal = document.getElementById("successModal");
-  let closeBtn = document.getElementsByClassName("close")[0];
+  let startModal = new bootstrap.Modal(document.getElementById("startModal"));
+  let successModal = new bootstrap.Modal(document.getElementById("successModal"));
   let input = "";
   let inputCellsArray = [];
   let onClickCell = "";
@@ -78,7 +78,7 @@ window.onload = function() {
     solveBtn.disabled = true;
     resetBtn.disabled = true;
     if (playerSolved) {
-      modal.style.display = "block";
+      successModal.show();
       let today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
       let duration = minutesLabel.innerText + ":" + secondsLabel.innerText;
       let newRecord = {date: today, duration: duration};
@@ -124,6 +124,7 @@ window.onload = function() {
   }
 
   startBtn.onclick = function() {
+    startModal.show();
     solvedArray = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -177,7 +178,7 @@ window.onload = function() {
     if (onClickCell) {
       onClickCell.classList.remove("on-click");
     }
-    won(false);
+    won(true);
     for (let i = 0, row; row = table.rows[i]; i++) {
       for (let j = 0, col; col = row.cells[j]; j++) {
         row.cells[j].classList.remove("const");
@@ -210,11 +211,6 @@ window.onload = function() {
    undoCell.classList.remove("error");
    isError = false;
  }
-
- closeBtn.onclick = function() {
-  successModal.style.display = "none";
- }
-
 
  // generate random soduku
  let changesMade = false;
