@@ -1,28 +1,31 @@
 window.onload = function() {
-  var gameInterval;
-  var startArray;
-  var solvedArray;
-  var table = document.getElementById("sudoku-board");
-  var palette = document.getElementById("numbers-palette");
-  var minutesLabel = document.getElementById("minutes");
-  var secondsLabel = document.getElementById("seconds");
-  var sudokuCells = document.querySelectorAll("#sudoku-board td");
-  var paletteCells = document.querySelectorAll("#numbers-palette td");
-  var startBtn = document.getElementById("start-btn");
-  var solveBtn = document.getElementById("solve-btn");
-  var resetBtn = document.getElementById("reset-btn");
-  var undoBtn = document.getElementById("undo-btn");
-  var input = "";
-  var inputCellsArray = [];
-  var onClickCell = "";
-  var isError = false;
+  let gameInterval;
+  let startArray;
+  let solvedArray;
+  let table = document.getElementById("sudoku-board");
+  let palette = document.getElementById("numbers-palette");
+  let minutesLabel = document.getElementById("minutes");
+  let secondsLabel = document.getElementById("seconds");
+  let sudokuCells = document.querySelectorAll("#sudoku-board td");
+  let paletteCells = document.querySelectorAll("#numbers-palette td");
+  let startBtn = document.getElementById("start-btn");
+  let solveBtn = document.getElementById("solve-btn");
+  let resetBtn = document.getElementById("reset-btn");
+  let undoBtn = document.getElementById("undo-btn");
+  let successModal = document.getElementById("successModal");
+  let closeBtn = document.getElementsByClassName("close")[0];
+  let input = "";
+  let inputCellsArray = [];
+  let onClickCell = "";
+  let isError = false;
   
   table.disabled = true;
   palette.disabled = true;
   solveBtn.disabled = true;
   resetBtn.disabled = true;
-  for (var i = 0, row; row = table.rows[i]; i++) {
-    for (var j = 0, col; col = row.cells[j]; j++) {
+  
+  for (let i = 0, row; row = table.rows[i]; i++) {
+    for (let j = 0, col; col = row.cells[j]; j++) {
       row.cells[j].setAttribute("id", "" + i + j);
     }  
   }
@@ -47,12 +50,12 @@ window.onload = function() {
   }
 
   function pad(val) {
-    var valString = val + "";
+    let valString = val + "";
     return (valString.length < 2) ? ("0" + valString) : valString;
   }
 
   function isWin() {
-    for (var i = 0; i < sudokuCells.length; i++) {
+    for (let i = 0; i < sudokuCells.length; i++) {
       if (sudokuCells[i].innerText == "") {
         return false;
       }
@@ -62,27 +65,28 @@ window.onload = function() {
 
   function won(playerSolved) {
     clearInterval(gameInterval);
-    for (var i = 0; i < paletteCells.length; i++) {
+    for (let i = 0; i < paletteCells.length; i++) {
       paletteCells[i].removeEventListener("click", paletteInputHandler);
     }
-    for (var i = 0; i < sudokuCells.length; i++) {
+    for (let i = 0; i < sudokuCells.length; i++) {
       sudokuCells[i].removeEventListener("click", sudokuInputHandler);
       sudokuCells[i].classList.remove("user-input");
       sudokuCells[i].classList.remove("const");
-      sudokuCells[j].classList.remove("error");
+      sudokuCells[i].classList.remove("error");
     }
     inputCellsArray = [];
     solveBtn.disabled = true;
     resetBtn.disabled = true;
     if (playerSolved) {
-      var today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-      var duration = minutesLabel.innerText + ":" + secondsLabel.innerText;
-      var newRecord = {date: today, duration: duration};
+      modal.style.display = "block";
+      let today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+      let duration = minutesLabel.innerText + ":" + secondsLabel.innerText;
+      let newRecord = {date: today, duration: duration};
       window.localStorage.setItem(JSON.stringify(newRecord), JSON.stringify(newRecord));
     }
   }
 
-  var sudokuInputHandler = function (event) {
+  let sudokuInputHandler = function (event) {
     if (!input) { return; }
     if (isError) {
       if (!this.classList.contains("error")) {
@@ -93,7 +97,7 @@ window.onload = function() {
     input = "";
     inputCellsArray.push(this);
     onClickCell.classList.remove("on-click");
-    for (var i = 0; i < sudokuCells.length; i++) {
+    for (let i = 0; i < sudokuCells.length; i++) {
       if (sudokuCells[i].innerText == this.innerText) {
         if (checkInput(sudokuCells[i].id.slice(0,1), sudokuCells[i].id.slice(1), this.id.slice(0,1), this.id.slice(1))) {
           this.classList.add("error");
@@ -110,7 +114,7 @@ window.onload = function() {
     }
   }
   
-  var paletteInputHandler = function (event) {
+  let paletteInputHandler = function (event) {
     input = this.innerText;
     if (onClickCell) {
       onClickCell.classList.remove("on-click");
@@ -132,7 +136,7 @@ window.onload = function() {
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
     generateRandomSudoku(30);
-    var totalSeconds = 0;
+    let totalSeconds = 0;
     inputCellsArray = [];
     
     function setTime() {
@@ -147,8 +151,8 @@ window.onload = function() {
     gameInterval = setInterval(setTime, 1000);
     resetBtn.disabled = false;
     solveBtn.disabled = false;
-    for (var i = 0, row; row = table.rows[i]; i++) {
-      for (var j = 0, col; col = row.cells[j]; j++) {
+    for (let i = 0, row; row = table.rows[i]; i++) {
+      for (let j = 0, col; col = row.cells[j]; j++) {
         row.cells[j].classList.remove("const");
         row.cells[j].classList.remove("user-input");  
         row.cells[j].classList.remove("error");
@@ -160,10 +164,10 @@ window.onload = function() {
         }
       }  
     }
-    for (var i = 0; i < paletteCells.length; i++) {
+    for (let i = 0; i < paletteCells.length; i++) {
       paletteCells[i].addEventListener("click", paletteInputHandler);
     }
-    for (var i = 0; i < sudokuCells.length; i++) {
+    for (let i = 0; i < sudokuCells.length; i++) {
       if (sudokuCells[i].classList.contains("const")) { continue; }
       sudokuCells[i].addEventListener("click", sudokuInputHandler);
     }
@@ -174,21 +178,19 @@ window.onload = function() {
       onClickCell.classList.remove("on-click");
     }
     won(false);
-    for (var i = 0, row; row = table.rows[i]; i++) {
-      for (var j = 0, col; col = row.cells[j]; j++) {
+    for (let i = 0, row; row = table.rows[i]; i++) {
+      for (let j = 0, col; col = row.cells[j]; j++) {
         row.cells[j].classList.remove("const");
         row.cells[j].classList.remove("user-input");  
         row.cells[j].classList.remove("error");
         row.cells[j].innerText = solvedArray[i][j];
       }  
     }
-    secondsLabel.innerText = "00";
-    minutesLabel.innerText = "00";
  }
 
  resetBtn.onclick = function() {
-  for (var i = 0, row; row = table.rows[i]; i++) {
-    for (var j = 0, col; col = row.cells[j]; j++) {
+  for (let i = 0, row; row = table.rows[i]; i++) {
+    for (let j = 0, col; col = row.cells[j]; j++) {
       row.cells[j].innerText = startArray[i][j] == "0" ? "" : startArray[i][j];
       row.cells[j].classList.remove("user-input");  
       row.cells[j].classList.remove("error");
@@ -202,18 +204,22 @@ window.onload = function() {
 
  undoBtn.onclick = function() {
    if (inputCellsArray.length == 0) { return; }
-   var undoCell = inputCellsArray.pop();
+   let undoCell = inputCellsArray.pop();
    undoCell.innerText = "";
    undoCell.classList.remove("user-input");
    undoCell.classList.remove("error");
    isError = false;
  }
 
+ closeBtn.onclick = function() {
+  successModal.style.display = "none";
+ }
+
 
  // generate random soduku
- var changesMade = false;
- var counter = 0;
- var fields = [];
+ let changesMade = false;
+ let counter = 0;
+ let fields = [];
 
  // solves a sudoku
  function solveSudoku() {
@@ -241,7 +247,7 @@ window.onload = function() {
  // returns true if there are two equal numbers in the same row
  function duplicateNumberInRow(s, fieldY) {
   numbers = new Array();
-  for (var i = 0; i < 9; i++) {
+  for (let i = 0; i < 9; i++) {
     if (s[i][fieldY] !== 0) {
       if (numbers.includes(s[i][fieldY])) {
         return true;
@@ -256,7 +262,7 @@ window.onload = function() {
  // returns true if there are two equal numbers in the same col
  function duplicateNumberInCol(s, fieldX) {
   numbers = new Array();
-  for (var i = 0; i < 9; i++) {
+  for (let i = 0; i < 9; i++) {
     if (s[fieldX][i] !== 0) {
       if (numbers.includes(s[fieldX][i])) {
         return true;
@@ -273,8 +279,8 @@ window.onload = function() {
   boxX = Math.floor(fieldX / 3);
   boxY = Math.floor(fieldY / 3);
   numbers = new Array();
-  for (var i = 0; i < 3; i++) {
-    for (var j = 0; j < 3; j++) {
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
       x = i + 3 * boxX;
       y = j + 3 * boxY;
       if (s[x][y] !== 0) {
@@ -321,12 +327,12 @@ window.onload = function() {
     solvedArray = JSON.parse(JSON.stringify(startArray));
 
     // how many numbers are entered already?
-    var numbersDone = 0;
+    let numbersDone = 0;
 
     while (numbersDone < numbers) {
-      var fieldX = Math.floor(Math.random() * 9);
-      var fieldY = Math.floor(Math.random() * 9);
-      var number = Math.floor(Math.random() * 9) + 1;
+      let fieldX = Math.floor(Math.random() * 9);
+      let fieldY = Math.floor(Math.random() * 9);
+      let number = Math.floor(Math.random() * 9) + 1;
 
       if (startArray[fieldX][fieldY] === 0) {
         startArray[fieldX][fieldY] = number;
@@ -346,18 +352,18 @@ window.onload = function() {
 
  // fills the possible numbers for the fields
  function fill_possible_fields() {
-  for (var i = 0; i < 9; i++) {
+  for (let i = 0; i < 9; i++) {
     fields[i] = [];
   }
-  for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       fields[i][j] = [];
     }
   }
 
-  for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++) {
-      for (var k = 0; k < 9; k++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      for (let k = 0; k < 9; k++) {
         fields[i][j][k] = k + 1;
       }
     }
@@ -366,12 +372,12 @@ window.onload = function() {
 
  // tests the possible 9 numbers for a field, if only one is possible then it's entered to the field
  function test_possible_fields() {
-  for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       if (solvedArray[i][j] === 0) {
-        var numbers = 0;
-        var number = 0;
-        for (var k = 0; k < 9; k++) {
+        let numbers = 0;
+        let number = 0;
+        for (let k = 0; k < 9; k++) {
           if (fields[i][j][k] !== 0) {
             number = k + 1;
             numbers++;
@@ -388,11 +394,11 @@ window.onload = function() {
 
  // tests the rows and cols
  function test_rows_and_cols() {
-  for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       if (solvedArray[i][j] !== 0) {
-        var number = solvedArray[i][j];
-        for (var k = 0; k < 9; k++) {
+        let number = solvedArray[i][j];
+        for (let k = 0; k < 9; k++) {
           if (solvedArray[i][k] === 0) {
             if (fields[i][k][number - 1] !== 0) {
               changesMade = true;
@@ -400,8 +406,8 @@ window.onload = function() {
             fields[i][k][number - 1] = 0;
           }
         }
-        var number = solvedArray[i][j];
-        for (var k = 0; k < 9; k++) {
+        number = solvedArray[i][j];
+        for (let k = 0; k < 9; k++) {
           if (solvedArray[k][j] === 0) {
             if (fields[k][j][number - 1] !== 0) {
               changesMade = true;
@@ -416,14 +422,14 @@ window.onload = function() {
 
  // tests the blocks
  function test_blocks() {
-  for (var k = 0; k < 3; k++) {
-    for (var l = 0; l < 3; l++) {
-      for (var i = 0 + k * 3; i < 3 + k * 3; i++) {
-        for (var j = 0 + l * 3; j < 3 + l * 3; j++) {
+  for (let k = 0; k < 3; k++) {
+    for (let l = 0; l < 3; l++) {
+      for (let i = 0 + k * 3; i < 3 + k * 3; i++) {
+        for (let j = 0 + l * 3; j < 3 + l * 3; j++) {
           if (solvedArray[i][j] !== 0) {
-            var number = solvedArray[i][j];
-            for (var a = 0 + k * 3; a < 3 + k * 3; a++) {
-              for (var b = 0 + l * 3; b < 3 + l * 3; b++) {
+            let number = solvedArray[i][j];
+            for (let a = 0 + k * 3; a < 3 + k * 3; a++) {
+              for (let b = 0 + l * 3; b < 3 + l * 3; b++) {
                 if (solvedArray[a][b] === 0) {
                   if (fields[a][b][number - 1] !== 0) {
                     changesMade = true;
@@ -441,8 +447,8 @@ window.onload = function() {
 
  // tests if a sudoku is complete and returns eiter true or false
  function sudoku_complete() {
-  for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       if (solvedArray[i][j] === 0) {
         return false;
       }
@@ -453,8 +459,8 @@ window.onload = function() {
 
  //Tests if there are any duplicate numbers in a sudoku
  function sudoku_invalid(s) {
-  for (var i = 0; i < 9; i++) {
-    for (var j = 0; j < 9; j++) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
       if (duplicateNumberExists(s, i, j)) {
         return true;
       }
@@ -463,7 +469,3 @@ window.onload = function() {
   return false;
  }
 }
-
-
-
-
