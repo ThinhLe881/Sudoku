@@ -1,4 +1,5 @@
 window.onload = function() {
+  let totalSeconds = 0;
   let gameInterval;
   let startArray;
   let solvedArray;
@@ -13,6 +14,9 @@ window.onload = function() {
   let resetBtn = document.getElementById("reset-btn");
   let undoBtn = document.getElementById("undo-btn");
   let startModal = new bootstrap.Modal(document.getElementById("startModal"));
+  let easyBtn = document.getElementById("easy-btn");
+  let mediumBtn = document.getElementById("medium-btn");
+  let hardBtn = document.getElementById("hard-btn");
   let successModal = new bootstrap.Modal(document.getElementById("successModal"));
   let input = "";
   let inputCellsArray = [];
@@ -86,7 +90,7 @@ window.onload = function() {
     }
   }
 
-  let sudokuInputHandler = function (event) {
+  let sudokuInputHandler = function () {
     if (!input) { return; }
     if (isError) {
       if (!this.classList.contains("error")) {
@@ -114,7 +118,7 @@ window.onload = function() {
     }
   }
   
-  let paletteInputHandler = function (event) {
+  let paletteInputHandler = function () {
     input = this.innerText;
     if (onClickCell) {
       onClickCell.classList.remove("on-click");
@@ -123,8 +127,13 @@ window.onload = function() {
     onClickCell = this;
   }
 
-  startBtn.onclick = function() {
-    startModal.show();
+  function setTime() {
+    ++totalSeconds;
+    minutesLabel.innerText = pad(parseInt(totalSeconds / 60));
+    secondsLabel.innerText = pad(totalSeconds % 60);
+  }
+
+  let startGameHandler = function (numbers) {
     solvedArray = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -136,22 +145,19 @@ window.onload = function() {
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ];
-    generateRandomSudoku(30);
-    let totalSeconds = 0;
+    generateRandomSudoku(numbers);
+    
     inputCellsArray = [];
     
-    function setTime() {
-      ++totalSeconds;
-      minutesLabel.innerText = pad(parseInt(totalSeconds / 60));
-      secondsLabel.innerText = pad(totalSeconds % 60);
-    }
-
+    totalSeconds = 0;
     secondsLabel.innerText = "00";
     minutesLabel.innerText = "00";
     clearInterval(gameInterval);
     gameInterval = setInterval(setTime, 1000);
+
     resetBtn.disabled = false;
     solveBtn.disabled = false;
+
     for (let i = 0, row; row = table.rows[i]; i++) {
       for (let j = 0, col; col = row.cells[j]; j++) {
         row.cells[j].classList.remove("const");
@@ -172,7 +178,26 @@ window.onload = function() {
       if (sudokuCells[i].classList.contains("const")) { continue; }
       sudokuCells[i].addEventListener("click", sudokuInputHandler);
     }
- };
+  }
+
+  startBtn.onclick = function() {
+    startModal.show();
+  };
+
+  easyBtn.onclick = function() {
+    startGameHandler(30);
+    startModal.hide();
+  }
+
+  mediumBtn.onclick = function() {
+    startGameHandler(27);
+    startModal.hide();
+  }
+
+  hardBtn.onclick = function() {
+    startGameHandler(24);
+    startModal.hide();
+  }
 
  solveBtn.onclick = function() {
     if (onClickCell) {
@@ -211,6 +236,7 @@ window.onload = function() {
    undoCell.classList.remove("error");
    isError = false;
  }
+
 
  // generate random soduku
  let changesMade = false;
