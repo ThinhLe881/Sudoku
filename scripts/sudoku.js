@@ -203,7 +203,7 @@ window.onload = function() {
     if (onClickCell) {
       onClickCell.classList.remove("on-click");
     }
-    won(false);
+    won(true);
     for (let i = 0, row; row = table.rows[i]; i++) {
       for (let j = 0, col; col = row.cells[j]; j++) {
         row.cells[j].classList.remove("const");
