@@ -90,12 +90,13 @@ window.onload = function() {
     }
   }
 
-  let sudokuInputHandler = function () {
+  let sudokuInputHandler = function (event) {
     if (!input) { return; }
     if (isError) {
       if (!this.classList.contains("error")) {
         return;
       }
+      inputCellsArray.pop(this);
     }
     this.innerText = input;
     input = "";
@@ -118,7 +119,7 @@ window.onload = function() {
     }
   }
   
-  let paletteInputHandler = function () {
+  let paletteInputHandler = function (event) {
     input = this.innerText;
     if (onClickCell) {
       onClickCell.classList.remove("on-click");
