@@ -2,33 +2,15 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.d-inline-block {
-	margin-right: 2rem;
-}
-
-.scores-board {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
-
 table,
 th,
 td {
-	margin-left: auto;
-	margin-right: auto;
+	margin-inline: auto;
+	padding: 0.5rem;
 	border-collapse: collapse;
 	text-align: center;
-	padding: 0.5rem;
 }
 
 th {
-	border-bottom: solid thin;
-}
-
-.btn {
-	margin-top: 1rem;
-	padding: 0.5rem;
-	font-weight: bold;
-	border: solid thin;
+	border-bottom: solid medium;
 }

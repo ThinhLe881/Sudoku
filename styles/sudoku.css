@@ -2,52 +2,33 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-.d-inline-block {
-	margin-right: 2rem;
-}
-
 @media screen and (max-width: 370px) {
-	.control {
+	.menu {
 		flex-direction: column;
 		row-gap: 0.5rem;
+		width: 20rem;
 	}
 
-	.control-btn {
+	.menu div {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
+		column-gap: 0.5rem;
 	}
 }
 
-.control {
+.menu {
 	display: flex;
 	justify-content: space-between;
-	column-gap: 0.5rem;
-	margin-top: 2rem;
-	margin-bottom: 0.5rem;
 	max-width: 30rem;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.btn {
-	padding: 0.5rem;
-	font-weight: bold;
-	border: solid medium;
-}
-
-.timer {
-	background-color: #f76c5e;
-	flex: 1;
-}
-
-.game-board {
-	margin: 0.5rem;
-	font-weight: bold;
+	column-gap: 0.5rem;
+	margin-top: 3rem;
+	margin-bottom: 0.5rem;
+	margin-inline: auto;
 }
 
 table {
-	border-collapse: collapse;
 	table-layout: fixed;
+	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -61,11 +42,11 @@ td {
 	border: solid thin;
 	height: 3.5rem;
 	width: 3.5rem;
-	text-align: center;
 	padding: 0;
+	text-align: center;
 }
 
-.numbers-palette td {
+.palette td {
 	border: solid medium;
 }
 

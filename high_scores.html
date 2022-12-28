@@ -2,41 +2,49 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Sudoku Game</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="styles/high_scores.css">
-  <script src="scripts/high_scores.js"></script>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Sudoku Game</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="styles/high_scores.css" />
+	<script src="scripts/high_scores.js"></script>
 </head>
 
-<body>    
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fw-bold">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="./images/logo.webp" alt="" width="25" height="25" class="d-inline-block align-text-top">
-        Sudoku Centre
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="index.html">Play Game</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="#">High Scores</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div class="scores-board" id="scores-board"></div>
-  <div class="scores-board">
-    <button class="btn" id="reset-btn">Reset</button>
-  </div>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fw-bold">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">
+				<img src="./images/logo.webp" alt="" width="25" height="25"
+					class="d-inline-block mx-4 align-text-top" />
+				Sudoku Centre
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"> </span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="index.html">Play Game</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">High Scores</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="d-block text-center fw-bold" id="board"></div>
+	<div class="d-block text-center">
+		<button type="button" class="btn btn-outline-dark mt-3 p-2 border-3 fw-bold" id="reset-btn">
+			Reset
+		</button>
+	</div>
 </body>
+
+</html>
