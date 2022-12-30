@@ -1,4 +1,3 @@
-// generate random soduku
 let changesMade = false;
 let counter = 0;
 let fields = [];
@@ -47,7 +46,6 @@ function generateRandomSudoku(numbers) {
 				} else {
 					numbersDone++;
 				}
-				//alert("" + numbersDone);
 			}
 		}
 		solvedArray = JSON.parse(JSON.stringify(startArray));
