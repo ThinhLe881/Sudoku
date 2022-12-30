@@ -92,45 +92,43 @@ window.onload = function () {
 		}
 	}
 
-	class sudokuInputHandler {
-		constructor(event) {
-			if (!input) {
+	let sudokuInputHandler = function (event) {
+		if (!input) {
+			return;
+		}
+		if (isError) {
+			if (!this.classList.contains('error')) {
 				return;
 			}
-			if (isError) {
-				if (!this.classList.contains('error')) {
+			inputCellsArray.pop(this);
+		}
+		this.innerText = input;
+		input = '';
+		inputCellsArray.push(this);
+		onClickCell.classList.remove('on-click');
+		for (let i = 0; i < boardCells.length; i++) {
+			if (boardCells[i].innerText == this.innerText) {
+				if (
+					checkInput(
+						boardCells[i].id.slice(0, 1),
+						boardCells[i].id.slice(1),
+						this.id.slice(0, 1),
+						this.id.slice(1)
+					)
+				) {
+					this.classList.add('error');
+					isError = true;
 					return;
 				}
-				inputCellsArray.pop(this);
-			}
-			this.innerText = input;
-			input = '';
-			inputCellsArray.push(this);
-			onClickCell.classList.remove('on-click');
-			for (let i = 0; i < boardCells.length; i++) {
-				if (boardCells[i].innerText == this.innerText) {
-					if (
-						checkInput(
-							boardCells[i].id.slice(0, 1),
-							boardCells[i].id.slice(1),
-							this.id.slice(0, 1),
-							this.id.slice(1)
-						)
-					) {
-						this.classList.add('error');
-						isError = true;
-						return;
-					}
-				}
-			}
-			isError = false;
-			this.classList.remove('error');
-			this.classList.add('user-input');
-			if (isWin()) {
-				won(true);
 			}
 		}
-	}
+		isError = false;
+		this.classList.remove('error');
+		this.classList.add('user-input');
+		if (isWin()) {
+			won(true);
+		}
+	};
 
 	let paletteInputHandler = function (event) {
 		input = this.innerText;
