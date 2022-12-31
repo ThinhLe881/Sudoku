@@ -1,20 +1,24 @@
-let changesMade = false;
-let counter = 0;
-let fields = [];
-solvedArray = [
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-	[0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+let changesMade;
+let counter;
+let fields;
+let solvedArray, startArray;
 
 // generates a random sudoku with a given amount of numbers in it
 function generateRandomSudoku(numbers) {
+	changesMade = false;
+	counter = 0;
+	fields = [];
+	solvedArray = [
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0],
+	];
 	while (!sudoku_complete() || sudoku_invalid(solvedArray)) {
 		// new empty sudoku
 		startArray = [
@@ -29,10 +33,8 @@ function generateRandomSudoku(numbers) {
 			[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		];
 		solvedArray = JSON.parse(JSON.stringify(startArray));
-
 		// how many numbers are entered already?
 		let numbersDone = 0;
-
 		while (numbersDone < numbers) {
 			let fieldX = Math.floor(Math.random() * 9);
 			let fieldY = Math.floor(Math.random() * 9);
@@ -57,10 +59,8 @@ function generateRandomSudoku(numbers) {
 // solves a sudoku
 function solveSudoku() {
 	fill_possible_fields();
-
 	changesMade = false;
 	counter = 0;
-
 	while (!sudoku_complete()) {
 		counter++;
 		test_rows_and_cols();

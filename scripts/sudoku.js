@@ -92,7 +92,7 @@ window.onload = function () {
 		}
 	}
 
-	let sudokuInputHandler = function (event) {
+	function sudokuInputHandler(event) {
 		if (!input) {
 			return;
 		}
@@ -128,16 +128,16 @@ window.onload = function () {
 		if (isWin()) {
 			won(true);
 		}
-	};
+	}
 
-	let paletteInputHandler = function (event) {
+	function paletteInputHandler(event) {
 		input = this.innerText;
 		if (onClickCell) {
 			onClickCell.classList.remove('on-click');
 		}
 		this.classList.add('on-click');
 		onClickCell = this;
-	};
+	}
 
 	function setTime() {
 		++totalSeconds;
@@ -145,7 +145,7 @@ window.onload = function () {
 		secondsLabel.innerText = pad(totalSeconds % 60);
 	}
 
-	let startGameHandler = function (numbers) {
+	function startGameHandler(numbers) {
 		[startArray, solvedArray] = generateRandomSudoku(numbers);
 
 		inputCellsArray = [];
@@ -181,7 +181,7 @@ window.onload = function () {
 			}
 			boardCells[i].addEventListener('click', sudokuInputHandler);
 		}
-	};
+	}
 
 	startBtn.onclick = function () {
 		startModal.show();
@@ -206,7 +206,7 @@ window.onload = function () {
 		if (onClickCell) {
 			onClickCell.classList.remove('on-click');
 		}
-		won(false);
+		won(true);
 		for (let i = 0, row; (row = board.rows[i]); i++) {
 			for (let j = 0, col; (col = row.cells[j]); j++) {
 				row.cells[j].classList.remove('const');
