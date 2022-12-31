@@ -206,7 +206,7 @@ window.onload = function () {
 		if (onClickCell) {
 			onClickCell.classList.remove('on-click');
 		}
-		won(true);
+		won(false);
 		for (let i = 0, row; (row = board.rows[i]); i++) {
 			for (let j = 0, col; (col = row.cells[j]); j++) {
 				row.cells[j].classList.remove('const');
