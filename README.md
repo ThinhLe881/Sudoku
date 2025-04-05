@@ -1,3 +1,5 @@
-# Sudoku Game - Thinh Le
+# [Sudoku](https://thinhle881.github.io/Sudoku/)
 
-## Home Page: [Link](https://thinhle881.github.io/sudoku-game/)
+## Features:
+
+-  Auto-generated sudoku game.
